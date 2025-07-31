@@ -67,7 +67,14 @@
         const div = document.createElement('div');
         div.className = 'dashboard';
         div.textContent = dashboardName;
-        div.onclick = () => window.open(link, '_blank');
+        div.onclick = () => {
+          const message = {
+            action: "drillToUrl",
+            url: link,
+            target: "_blank"
+          };
+          window.parent.postMessage(message, "*");
+        };
         rightPanel.appendChild(div);
       });
     }
