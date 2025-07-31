@@ -41,7 +41,11 @@
   <div class="right-panel" id="dashboard-list">Hover over a use case</div>
 
   <script>
-    let allData = [];
+    let allData = [
+      ["Analytics", "Loss Dashboard", "https://example.com/loss"],
+      ["Analytics", "Outage Dashboard", "https://example.com/outage"],
+      ["Customer", "Feedback Dashboard", "https://example.com/feedback"]
+    ];
 
     function renderUseCases(data) {
       const container = document.getElementById('usecase-list');
@@ -72,13 +76,10 @@
       });
     }
 
-    window.addEventListener("message", function(event) {
-      const data = event.data;
-      if (data && data.data && data.data.length > 0) {
-        allData = data.data;
-        renderUseCases(data.data);
-      }
-    }, false);
+    // Render immediately on load
+    window.onload = () => {
+      renderUseCases(allData);
+    };
   </script>
 </body>
 </html>
